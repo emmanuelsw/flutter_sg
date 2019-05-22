@@ -1,4 +1,4 @@
-# course_flutter
+# Flutter SG
 
 A new Flutter project.
 
