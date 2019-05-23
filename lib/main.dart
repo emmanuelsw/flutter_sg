@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.lightBlue[900],
-          title: Text('Sakura List'),
+          title: Text('『 Sakura List 』'),
         ),
         body: MemberManager('Isono Rinon'),
       ),
