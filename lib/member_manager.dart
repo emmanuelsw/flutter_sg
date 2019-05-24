@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './members.dart';
+import './member_control.dart';
 
 class MemberManager extends StatefulWidget {
   final String startingMember;
@@ -21,23 +22,19 @@ class _MemberManagerState extends State<MemberManager> {
     _members.add(widget.startingMember);
   }
 
+  void _addMember(String member) {
+    setState(() {
+      _members.add(member);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
         margin: EdgeInsets.all(10.0),
         child: Center(
-          child: RaisedButton.icon(
-            onPressed: () {
-              setState(() {
-                _members.add('Tensai');
-              });
-            },
-            icon: Icon(Icons.add),
-            label: Text('Add Member'),
-            color: Colors.teal,
-            textColor: Colors.white,
-          ),
+          child: MemberControl(_addMember),
         ),
       ),
       Members(_members),
