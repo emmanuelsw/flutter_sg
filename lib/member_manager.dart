@@ -5,7 +5,7 @@ import './member_control.dart';
 
 class MemberManager extends StatefulWidget {
   final String startingMember;
-  MemberManager(this.startingMember);
+  MemberManager({this.startingMember});
 
   @override
   State<StatefulWidget> createState() {
@@ -19,7 +19,9 @@ class _MemberManagerState extends State<MemberManager> {
   @override
   void initState() {
     super.initState();
-    _members.add(widget.startingMember);
+    if (widget.startingMember != null) {
+      _members.add(widget.startingMember);
+    }
   }
 
   void _addMember(String member) {
@@ -37,7 +39,9 @@ class _MemberManagerState extends State<MemberManager> {
           child: MemberControl(_addMember),
         ),
       ),
-      Members(_members),
+      Expanded(
+        child: Members(_members),
+      ),
     ]);
   }
 }

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import './member_manager.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.lightBlue[900],
           title: Text('『 Sakura List 』'),
         ),
-        body: MemberManager('Isono Rinon'),
+        body: MemberManager(startingMember: 'Isono Rinon'),
       ),
     );
   }
