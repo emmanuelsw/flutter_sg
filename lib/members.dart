@@ -16,10 +16,7 @@ class Members extends StatelessWidget {
             padding: EdgeInsets.only(top: 5.0, left: 7.0, bottom: 5.0),
             child: Text(
               members[index],
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
         ],
@@ -27,11 +24,25 @@ class Members extends StatelessWidget {
     );
   }
 
+  Widget _buildMemberList() {
+    Widget memberCards;
+
+    if (members.length > 0) {
+      memberCards = ListView.builder(
+        itemBuilder: _buildMemberItem,
+        itemCount: members.length,
+      );
+    } else {
+      memberCards = Center(
+        child: Text('No members found, please add some.'),
+      );
+    }
+
+    return memberCards;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return members.length > 0 ? ListView.builder(
-      itemBuilder: _buildMemberItem,
-      itemCount: members.length,
-    ) : Center(child: Text('No members found, please add some.'),);
+    return _buildMemberList();
   }
 }
