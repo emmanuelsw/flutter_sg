@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './pages/member.dart';
+
 class Members extends StatelessWidget {
   final List<String> members;
 
@@ -19,6 +21,20 @@ class Members extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
+          ButtonBar(
+            alignment: MainAxisAlignment.start,
+            children: <Widget>[
+              FlatButton(
+                child: Text('Details'),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => MemberPage(),
+                  ),
+                ),
+              )
+            ],
+          )
         ],
       ),
     );

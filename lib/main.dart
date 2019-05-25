@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import './member_manager.dart';
+import './pages/home.dart';
 
 void main() {
+  // debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 
@@ -11,13 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.lightBlue[900],
-          title: Text('『 Sakura List 』'),
-        ),
-        body: MemberManager(startingMember: 'Isono Rinon'),
-      ),
+      home: HomePage(),
     );
   }
 }
