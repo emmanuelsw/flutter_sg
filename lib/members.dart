@@ -7,6 +7,40 @@ class Members extends StatelessWidget {
 
   Members(this.members);
 
+  Widget _cardBodyText(index) {
+    return Padding(
+      padding: EdgeInsets.only(top: 7.0, left: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            members[index],
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15.0),
+          ),
+          Text(
+            'Tensai (天才)',
+            style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12.0, color: Colors.white),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _detailsButton(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(right: 8.0),
+      child: RaisedButton(
+        child: Text('Details'),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => MemberPage(),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildMemberItem(BuildContext context, int index) {
     return Card(
       color: Colors.pink[800],
@@ -14,27 +48,14 @@ class Members extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset('assets/rinon.jpg'),
-          Padding(
-            padding: EdgeInsets.only(top: 5.0, left: 7.0, bottom: 5.0),
-            child: Text(
-              members[index],
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
-          ButtonBar(
-            alignment: MainAxisAlignment.start,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              FlatButton(
-                child: Text('Details'),
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => MemberPage(),
-                  ),
-                ),
-              )
+              _cardBodyText(index),
+              _detailsButton(context)
             ],
-          )
+          ),
         ],
       ),
     );

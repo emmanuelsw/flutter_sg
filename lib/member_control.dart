@@ -9,7 +9,7 @@ class MemberControl extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton.icon(
       onPressed: () {
-        addMember('Tensai');
+        addMember('Tensai Fukei');
       },
       icon: Icon(Icons.add),
       label: Text('Add Member'),
