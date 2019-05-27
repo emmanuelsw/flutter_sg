@@ -30,17 +30,23 @@ class _MemberManagerState extends State<MemberManager> {
     });
   }
 
+  void _deleteMember(int index) {
+    setState(() {
+      _members.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        margin: EdgeInsets.all(10.0),
+        margin: EdgeInsets.only(top: 10.0, bottom: 7.0),
         child: Center(
           child: MemberControl(_addMember),
         ),
       ),
       Expanded(
-        child: Members(_members),
+        child: Members(_members, _deleteMember),
       ),
     ]);
   }

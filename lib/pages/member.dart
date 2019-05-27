@@ -26,13 +26,13 @@ class MemberPage extends StatelessWidget {
           Container(
             child: RaisedButton.icon(
               icon: Icon(
-                Icons.arrow_back,
+                Icons.delete,
                 size: 20.0,
               ),
-              label: Text('Back'),
-              color: Colors.teal,
+              label: Text('Delete'),
+              color: Colors.red[800],
               textColor: Colors.white,
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.pop(context, true),
             ),
           ),
         ],

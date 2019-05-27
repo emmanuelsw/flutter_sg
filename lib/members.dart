@@ -4,8 +4,9 @@ import './pages/member.dart';
 
 class Members extends StatelessWidget {
   final List<Map<String, String>> members;
+  final Function deleteMember;
 
-  Members(this.members);
+  Members(this.members, this.deleteMember);
 
   Widget _cardBodyText(index) {
     return Padding(
@@ -31,14 +32,18 @@ class Members extends StatelessWidget {
       padding: EdgeInsets.only(right: 8.0),
       child: RaisedButton(
         child: Text('Details'),
-        onPressed: () => Navigator.push(
+        onPressed: () => Navigator.push<bool>(
           context,
           MaterialPageRoute(
             builder: (BuildContext context) => MemberPage(
               members[index]['title'], members[index]['image']
             ),
           ),
-        ),
+        ).then((bool value) {
+          if (value) {
+            deleteMember(index);
+          }
+        }),
       ),
     );
   }
