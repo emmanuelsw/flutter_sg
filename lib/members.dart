@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import './pages/member.dart';
 
 class Members extends StatelessWidget {
-  final List<String> members;
+  final List<Map<String, String>> members;
 
   Members(this.members);
 
@@ -14,11 +14,11 @@ class Members extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            members[index],
+            members[index]['title'],
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15.0),
           ),
           Text(
-            'Tensai (天才)',
+            'Sakura Gakuin',
             style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12.0, color: Colors.white),
           )
         ],
@@ -26,7 +26,7 @@ class Members extends StatelessWidget {
     );
   }
 
-  Widget _detailsButton(BuildContext context) {
+  Widget _detailsButton(BuildContext context, int index) {
     return Padding(
       padding: EdgeInsets.only(right: 8.0),
       child: RaisedButton(
@@ -34,7 +34,9 @@ class Members extends StatelessWidget {
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (BuildContext context) => MemberPage(),
+            builder: (BuildContext context) => MemberPage(
+              members[index]['title'], members[index]['image']
+            ),
           ),
         ),
       ),
@@ -47,13 +49,13 @@ class Members extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset('assets/rinon.jpg'),
+          Image.asset(members[index]['image']),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               _cardBodyText(index),
-              _detailsButton(context)
+              _detailsButton(context, index)
             ],
           ),
         ],

@@ -10,7 +10,10 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.lightBlue[900],
         title: Text('『 Sakura List 』'),
       ),
-      body: MemberManager(startingMember: 'Isono Rinon'),
+      body: MemberManager(startingMember: {
+        'title': 'Isono Rinon',
+        'image': 'assets/rinon.jpg'
+      }),
     );
   }
 }

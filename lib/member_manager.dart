@@ -4,7 +4,7 @@ import './members.dart';
 import './member_control.dart';
 
 class MemberManager extends StatefulWidget {
-  final String startingMember;
+  final Map<String, String> startingMember;
   MemberManager({this.startingMember});
 
   @override
@@ -14,7 +14,7 @@ class MemberManager extends StatefulWidget {
 }
 
 class _MemberManagerState extends State<MemberManager> {
-  List<String> _members = [];
+  List<Map<String, String>> _members = [];
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _MemberManagerState extends State<MemberManager> {
     }
   }
 
-  void _addMember(String member) {
+  void _addMember(Map<String, String> member) {
     setState(() {
       _members.add(member);
     });

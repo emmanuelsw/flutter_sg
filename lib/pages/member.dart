@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 
 class MemberPage extends StatelessWidget {
+  final String title, imageUrl;
+
+  MemberPage(this.title, this.imageUrl);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[900],
-        title: Text('Member Detail'),
+        title: Text(title),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Image.asset('assets/rinon.jpg'),
+          Image.asset(imageUrl),
           Container(
             padding: EdgeInsets.only(top: 14.0, bottom: 10.0),
             child: Text(
-              'Isono Rinon (天才)',
+              title,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
           ),
