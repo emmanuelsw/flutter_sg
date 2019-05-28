@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../member_manager.dart';
-import './member_admin.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -18,12 +17,7 @@ class HomePage extends StatelessWidget {
               title: Text('Manage Members'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => MemberAdmin(),
-                  ),
-                );
+                Navigator.pushReplacementNamed(context, '/admin');
               },
             )
           ],

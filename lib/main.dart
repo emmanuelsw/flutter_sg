@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/rendering.dart';
 
-import './pages/auth.dart';
+// import './pages/auth.dart';
+import './pages/member_admin.dart';
+import './pages/home.dart';
 
 void main() {
-  // debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 
@@ -13,7 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
+      // home: AuthPage(),
+      routes: {
+        '/': (BuildContext context) => HomePage(),
+        '/admin': (BuildContext context) => MemberAdmin(),
+      },
     );
   }
 }
