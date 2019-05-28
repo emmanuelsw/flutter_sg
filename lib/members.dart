@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import './pages/member.dart';
-
 class Members extends StatelessWidget {
   final List<Map<String, String>> members;
   final Function deleteMember;
@@ -32,14 +30,9 @@ class Members extends StatelessWidget {
       padding: EdgeInsets.only(right: 8.0),
       child: RaisedButton(
         child: Text('Details'),
-        onPressed: () => Navigator.push<bool>(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => MemberPage(
-              members[index]['title'], members[index]['image']
-            ),
-          ),
-        ).then((bool value) {
+        onPressed: () => Navigator
+        .pushNamed<bool>(context, '/member/$index')
+        .then((bool value) {
           if (value) {
             deleteMember(index);
           }

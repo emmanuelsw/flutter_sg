@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import '../member_manager.dart';
 
 class HomePage extends StatelessWidget {
+  final List<Map<String, String>> members;
+  final Function addMember, deleteMember;
+
+  HomePage(this.members, this.addMember, this.deleteMember);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +32,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.lightBlue[900],
         title: Text('『 Sakura List 』'),
       ),
-      body: MemberManager(startingMember: {
-        'title': 'Isono Rinon',
-        'image': 'assets/rinon.jpg'
-      }),
+      body: MemberManager(members, addMember, deleteMember),
     );
   }
 }

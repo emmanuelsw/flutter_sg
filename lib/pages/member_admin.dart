@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import './home.dart';
 import './member_create.dart';
 import './member_list.dart';
 
@@ -19,12 +18,7 @@ class MemberAdmin extends StatelessWidget {
               ListTile(
                 title: Text('All members'),
                 onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => HomePage(),
-                    ),
-                  );
+                  Navigator.pushReplacementNamed(context, '/');
                 },
               )
             ],
