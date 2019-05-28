@@ -6,6 +6,20 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            AppBar(
+              automaticallyImplyLeading: false,
+              title: Text('Choose'),
+            ),
+            ListTile(
+              title: Text('Manage Members'),
+              onTap: () {},
+            )
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[900],
         title: Text('『 Sakura List 』'),
