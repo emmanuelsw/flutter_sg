@@ -25,17 +25,12 @@ class MemberAdmin extends StatelessWidget {
           ),
         ),
         appBar: AppBar(
+          backgroundColor: Colors.lightBlue[900],
           title: Text('Member Admin'),
           bottom: TabBar(
             tabs: <Widget>[
-              Tab(
-                text: 'Create Member',
-                icon: Icon(Icons.create),
-              ),
-              Tab(
-                text: 'My Members',
-                icon: Icon(Icons.list),
-              )
+              Tab(text: 'Create Member'),
+              Tab(text: 'My Members')
             ],
           ),
         ),
