@@ -4,6 +4,10 @@ import './member_create.dart';
 import './member_list.dart';
 
 class MemberAdmin extends StatelessWidget {
+  final Function addMember, deleteMember;
+
+  MemberAdmin(this.addMember, this.deleteMember);
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -36,7 +40,7 @@ class MemberAdmin extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            MemberCreatePage(),
+            MemberCreatePage(addMember),
             MemberListPage()
           ],
         ),

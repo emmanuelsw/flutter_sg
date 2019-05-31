@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MemberCreatePage extends StatefulWidget {
+  final Function addMember;
+
+  MemberCreatePage(this.addMember);
+
   @override
   State<StatefulWidget> createState() {
     return _MemberCreatePageState();
@@ -10,7 +14,7 @@ class MemberCreatePage extends StatefulWidget {
 class _MemberCreatePageState extends State<MemberCreatePage> {
   String titleValue, descriptionValue;
   double heightValue;
-
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -81,7 +85,15 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
             color: Colors.teal,
             textColor: Colors.white,
             label: Text('Save'),
-            onPressed: () {},
+            onPressed: () {
+              final Map<String, dynamic> member = {
+                'title': titleValue, 
+                'description': descriptionValue, 
+                'height': heightValue,
+                'image': 'assets/yui.jpg'
+              };
+              widget.addMember(member);
+            },
           ),
         ],
       ),

@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import '../member_manager.dart';
 
 class HomePage extends StatelessWidget {
-  final List<Map<String, String>> members;
-  final Function addMember, deleteMember;
+  final List<Map<String, dynamic>> members;
 
-  HomePage(this.members, this.addMember, this.deleteMember);
+  HomePage(this.members);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.lightBlue[900],
         title: Text('『 Sakura List 』'),
       ),
-      body: MemberManager(members, addMember, deleteMember),
+      body: MemberManager(members),
     );
   }
 }

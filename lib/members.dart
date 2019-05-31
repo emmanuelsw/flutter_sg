@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Members extends StatelessWidget {
-  final List<Map<String, String>> members;
-  final Function deleteMember;
+  final List<Map<String, dynamic>> members;
 
-  Members(this.members, this.deleteMember);
+  Members(this.members);
 
   Widget _cardBodyText(index) {
     return Padding(
@@ -30,13 +29,7 @@ class Members extends StatelessWidget {
       padding: EdgeInsets.only(right: 8.0),
       child: RaisedButton(
         child: Text('Details'),
-        onPressed: () => Navigator
-        .pushNamed<bool>(context, '/member/$index')
-        .then((bool value) {
-          if (value) {
-            deleteMember(index);
-          }
-        }),
+        onPressed: () => Navigator.pushNamed<bool>(context, '/member/$index')
       ),
     );
   }

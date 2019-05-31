@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyApp extends State<MyApp> {
-  List<Map<String, String>> _members = [];
+  List<Map<String, dynamic>> _members = [];
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _MyApp extends State<MyApp> {
     _members.add({'title': 'Isono Rinon', 'image': 'assets/rinon.jpg'});
   }
 
-  void _addMember(Map<String, String> member) {
+  void _addMember(Map<String, dynamic> member) {
     setState(() {
       _members.add(member);
     });
@@ -41,8 +41,8 @@ class _MyApp extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (BuildContext context) => HomePage(_members, _addMember, _deleteMember),
-        '/admin': (BuildContext context) => MemberAdmin(),
+        '/': (BuildContext context) => HomePage(_members),
+        '/admin': (BuildContext context) => MemberAdmin(_addMember, _deleteMember),
       },
       onGenerateRoute: (RouteSettings settings) {
         final List<String> pathElements = settings.name.split('/');
@@ -58,8 +58,7 @@ class _MyApp extends State<MyApp> {
       },
       onUnknownRoute: (RouteSettings settings) {
         MaterialPageRoute(
-          builder: (BuildContext context) =>
-            HomePage(_members, _addMember, _deleteMember),
+          builder: (BuildContext context) => HomePage(_members),
         );
       },
     );
