@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './pages/auth.dart';
 import './pages/home.dart';
 import './pages/member_admin.dart';
 import './pages/member.dart';
@@ -41,7 +42,8 @@ class _MyApp extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (BuildContext context) => HomePage(_members),
+        '/': (BuildContext context) => AuthPage(),
+        '/members': (BuildContext context) => HomePage(_members),
         '/admin': (BuildContext context) => MemberAdmin(_addMember, _deleteMember),
       },
       onGenerateRoute: (RouteSettings settings) {

@@ -22,7 +22,7 @@ class MemberAdmin extends StatelessWidget {
               ListTile(
                 title: Text('All members'),
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, '/');
+                  Navigator.pushReplacementNamed(context, '/members');
                 },
               )
             ],

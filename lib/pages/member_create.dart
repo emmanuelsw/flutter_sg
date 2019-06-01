@@ -39,7 +39,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
               });
             },
           ),
-          Padding(padding: EdgeInsets.all(5.0)),
+          SizedBox(height: 10.0),
           TextField(
             maxLines: 3,
             style: TextStyle(fontSize: 14.0),
@@ -59,7 +59,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
               });
             },
           ),
-          Padding(padding: EdgeInsets.all(5.0)),
+          SizedBox(height: 10.0),
           TextField(
             style: TextStyle(fontSize: 14.0),
             decoration: InputDecoration(
@@ -79,7 +79,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
               });
             },
           ),
-          Padding(padding: EdgeInsets.all(3.0)),
+          SizedBox(height: 5.0),
           RaisedButton.icon(
             icon: Icon(Icons.save, size: 15.0),
             color: Colors.teal,
@@ -93,6 +93,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
                 'image': 'assets/yui.jpg'
               };
               widget.addMember(member);
+              Navigator.pushReplacementNamed(context, '/members');
             },
           ),
         ],
