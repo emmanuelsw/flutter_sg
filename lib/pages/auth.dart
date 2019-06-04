@@ -8,7 +8,8 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  String email, password;
+  String _email, _password;
+  bool _acceptTerms = false;
 
   Widget loginLogo() {
     return Column(
@@ -33,6 +34,7 @@ class _AuthPageState extends State<AuthPage> {
       keyboardType: TextInputType.emailAddress,
       style: TextStyle(fontSize: 14.0),
       decoration: InputDecoration(
+        labelText: label,
         contentPadding: EdgeInsets.all(15.0),
         hasFloatingPlaceholder: false,
         fillColor: Colors.grey[300],
@@ -41,7 +43,6 @@ class _AuthPageState extends State<AuthPage> {
           borderSide: BorderSide.none,
           borderRadius: new BorderRadius.circular(5.0),
         ),
-        labelText: label,
       ),
       onChanged: (String value) {
         setState(() {
@@ -67,9 +68,22 @@ class _AuthPageState extends State<AuthPage> {
               children: <Widget>[
                 loginLogo(),
                 SizedBox(height: 40.0),
-                loginTextField(email, 'Email'),
+                loginTextField(_email, 'Email'),
                 SizedBox(height: 10.0),
-                loginTextField(password, 'Password'),
+                loginTextField(_password, 'Password'),
+                SwitchListTile(
+                  activeColor: Colors.teal,
+                  title: Text(
+                    'Accept Terms', 
+                    style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+                  ),
+                  value: _acceptTerms,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _acceptTerms = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 8.0),
                 SizedBox(
                   width: double.infinity,

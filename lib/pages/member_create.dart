@@ -12,8 +12,8 @@ class MemberCreatePage extends StatefulWidget {
 }
 
 class _MemberCreatePageState extends State<MemberCreatePage> {
-  String titleValue, descriptionValue;
-  double heightValue;
+  String _titleValue, _descriptionValue;
+  double _heightValue;
   
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
           TextField(
             style: TextStyle(fontSize: 14.0),
             decoration: InputDecoration(
+              labelText: 'Name',
               hasFloatingPlaceholder: false,
               fillColor: Colors.grey[300],
               filled: true,
@@ -31,11 +32,11 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
                 borderSide: BorderSide.none,
                 borderRadius: new BorderRadius.circular(5.0),
               ),
-              labelText: 'Name'
+  
             ),
             onChanged: (String value) {
               setState(() {
-                titleValue = value;
+                _titleValue = value;
               });
             },
           ),
@@ -44,6 +45,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
             maxLines: 3,
             style: TextStyle(fontSize: 14.0),
             decoration: InputDecoration(
+              labelText: 'Description',
               hasFloatingPlaceholder: false,
               fillColor: Colors.grey[300],
               filled: true,
@@ -51,11 +53,10 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
                 borderSide: BorderSide.none,
                 borderRadius: new BorderRadius.circular(5.0),
               ),
-              labelText: 'Description'
             ),
             onChanged: (String value) {
               setState(() {
-                descriptionValue = value;
+                _descriptionValue = value;
               });
             },
           ),
@@ -63,6 +64,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
           TextField(
             style: TextStyle(fontSize: 14.0),
             decoration: InputDecoration(
+              labelText: 'Height',
               hasFloatingPlaceholder: false,
               fillColor: Colors.grey[300],
               filled: true,
@@ -70,12 +72,11 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
                 borderSide: BorderSide.none,
                 borderRadius: new BorderRadius.circular(5.0),
               ),
-              labelText: 'Height'
             ),
             keyboardType: TextInputType.number,
             onChanged: (String value) {
               setState(() {
-                heightValue = double.parse(value);
+                _heightValue = double.parse(value);
               });
             },
           ),
@@ -87,9 +88,9 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
             label: Text('Save'),
             onPressed: () {
               final Map<String, dynamic> member = {
-                'title': titleValue, 
-                'description': descriptionValue, 
-                'height': heightValue,
+                'title': _titleValue, 
+                'description': _descriptionValue, 
+                'height': _heightValue,
                 'image': 'assets/yui.jpg'
               };
               widget.addMember(member);
