@@ -49,10 +49,10 @@ class MemberPage extends StatelessWidget {
           children: <Widget>[
             Image.asset(imageUrl),
             Container(
-              padding: EdgeInsets.only(top: 14.0, bottom: 10.0),
+              padding: EdgeInsets.only(top: 16.0, bottom: 10.0),
               child: Text(
                 title,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, fontFamily: 'Cocogoose'),
               ),
             ),
             Container(
