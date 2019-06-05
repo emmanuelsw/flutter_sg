@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget {
               title: Text('Choose'),
             ),
             ListTile(
+              leading: Icon(Icons.edit),
               title: Text('Manage Members'),
               onTap: () {
                 Navigator.pop(context);

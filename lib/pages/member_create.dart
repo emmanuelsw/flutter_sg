@@ -30,7 +30,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
               filled: true,
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
-                borderRadius: new BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(5.0),
               ),
   
             ),
@@ -51,7 +51,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
               filled: true,
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
-                borderRadius: new BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(5.0),
               ),
             ),
             onChanged: (String value) {
@@ -70,7 +70,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
               filled: true,
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
-                borderRadius: new BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(5.0),
               ),
             ),
             keyboardType: TextInputType.number,

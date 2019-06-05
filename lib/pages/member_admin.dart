@@ -20,6 +20,7 @@ class MemberAdmin extends StatelessWidget {
                 title: Text('Menu'),
               ),
               ListTile(
+                leading: Icon(Icons.list),
                 title: Text('All members'),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, '/members');
