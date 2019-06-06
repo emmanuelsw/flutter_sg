@@ -14,6 +14,17 @@ class MemberCreatePage extends StatefulWidget {
 class _MemberCreatePageState extends State<MemberCreatePage> {
   String _titleValue, _descriptionValue;
   double _heightValue;
+
+  void _submitForm () {
+    final Map<String, dynamic> member = {
+      'title': _titleValue, 
+      'description': _descriptionValue, 
+      'height': _heightValue,
+      'image': 'assets/yui.jpg'
+    };
+    widget.addMember(member);
+    Navigator.pushReplacementNamed(context, '/members');
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -32,7 +43,6 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(5.0),
               ),
-  
             ),
             onChanged: (String value) {
               setState(() {
@@ -86,16 +96,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
             color: Colors.teal,
             textColor: Colors.white,
             label: Text('Save'),
-            onPressed: () {
-              final Map<String, dynamic> member = {
-                'title': _titleValue, 
-                'description': _descriptionValue, 
-                'height': _heightValue,
-                'image': 'assets/yui.jpg'
-              };
-              widget.addMember(member);
-              Navigator.pushReplacementNamed(context, '/members');
-            },
+            onPressed: _submitForm,
           ),
         ],
       ),

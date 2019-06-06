@@ -28,7 +28,7 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  Widget loginTextField(field, label) {
+  Widget _loginTextField(field, label) {
     return TextField(
       obscureText: label == 'Password' ? true : false,
       keyboardType: TextInputType.emailAddress,
@@ -52,6 +52,28 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
+  Widget _loginSubmitButton() {
+    return SizedBox(
+      width: double.infinity,
+      child: RawMaterialButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+        padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+        fillColor: Colors.teal,
+        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text('Login'),
+            Icon(Icons.navigate_next),
+          ],
+        ),
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, '/members');
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,9 +90,9 @@ class _AuthPageState extends State<AuthPage> {
               children: <Widget>[
                 loginLogo(),
                 SizedBox(height: 40.0),
-                loginTextField(_email, 'Email'),
+                _loginTextField(_email, 'Email'),
                 SizedBox(height: 10.0),
-                loginTextField(_password, 'Password'),
+                _loginTextField(_password, 'Password'),
                 SwitchListTile(
                   activeColor: Colors.teal,
                   title: Text(
@@ -85,25 +107,7 @@ class _AuthPageState extends State<AuthPage> {
                   },
                 ),
                 SizedBox(height: 8.0),
-                SizedBox(
-                  width: double.infinity,
-                  child: RawMaterialButton(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-                    padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                    fillColor: Colors.teal,
-                    textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text('Login'),
-                        Icon(Icons.navigate_next),
-                      ],
-                    ),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/members');
-                    },
-                  ),
-                )
+                _loginSubmitButton(),
               ],
             ),
           ),
