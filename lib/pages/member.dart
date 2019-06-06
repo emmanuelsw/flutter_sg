@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:course_flutter/widgets/members/height_tag.dart';
 
 class MemberPage extends StatelessWidget {
   final Map<String, dynamic> member;
@@ -48,18 +49,7 @@ class MemberPage extends StatelessWidget {
                       textAlign: TextAlign.justify,
                       style: TextStyle(color: Colors.black87)),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(bottom: 8.0),
-                    padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.0),
-                      color: Colors.teal
-                    ),
-                    child: Text(
-                      'Height: ${member['height']}', 
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12.0),
-                    ),
-                  ),
+                  HeightTag(member['height'].toString()),
                 ],
               ),
             ),

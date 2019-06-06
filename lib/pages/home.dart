@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../member_manager.dart';
+import '../widgets/members/members.dart';
 
 class HomePage extends StatelessWidget {
   final List<Map<String, dynamic>> members;
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.lightBlue[900],
         title: Text('『 Sakura List 』'),
       ),
-      body: MemberManager(members),
+      body: Members(members),
     );
   }
 }
