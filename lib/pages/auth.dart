@@ -84,8 +84,9 @@ class _AuthPageState extends State<AuthPage> {
               image: DecorationImage(image: AssetImage('assets/bg.png'), fit: BoxFit.cover),
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(top: 80.0, right: 15.0, left: 15.0),
+          SingleChildScrollView(
+            child: Container(
+            padding: EdgeInsets.only(top: 80.0, right: 15.0, left: 15.0, bottom: 20.0),
             child: Column(
               children: <Widget>[
                 loginLogo(),
@@ -110,6 +111,7 @@ class _AuthPageState extends State<AuthPage> {
                 _loginSubmitButton(),
               ],
             ),
+          ),
           ),
         ],
       ),
