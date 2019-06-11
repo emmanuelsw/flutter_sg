@@ -28,9 +28,10 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
   
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 15.0, right: 10.0, left: 10.0),
+    return Container(
+      padding: EdgeInsets.only(right: 10.0, left: 10.0),
       child: ListView(
+        padding: EdgeInsets.only(top: 15.0),
         children: <Widget>[
           TextField(
             style: TextStyle(fontSize: 14.0),

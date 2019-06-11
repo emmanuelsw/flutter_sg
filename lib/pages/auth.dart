@@ -76,6 +76,9 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth = MediaQuery.of(context).size.width;
+    final double targetWidth = deviceWidth > 767.0 ? 500.0 : deviceWidth;
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -86,32 +89,33 @@ class _AuthPageState extends State<AuthPage> {
           ),
           SingleChildScrollView(
             child: Container(
-            padding: EdgeInsets.only(top: 80.0, right: 15.0, left: 15.0, bottom: 20.0),
-            child: Column(
-              children: <Widget>[
-                loginLogo(),
-                SizedBox(height: 40.0),
-                _loginTextField(_email, 'Email'),
-                SizedBox(height: 10.0),
-                _loginTextField(_password, 'Password'),
-                SwitchListTile(
-                  activeColor: Colors.teal,
-                  title: Text(
-                    'Accept Terms', 
-                    style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+              width: targetWidth,
+              padding: EdgeInsets.only(top: 80.0, right: 15.0, left: 15.0, bottom: 20.0),
+              child: Column(
+                children: <Widget>[
+                  loginLogo(),
+                  SizedBox(height: 40.0),
+                  _loginTextField(_email, 'Email'),
+                  SizedBox(height: 10.0),
+                  _loginTextField(_password, 'Password'),
+                  SwitchListTile(
+                    activeColor: Colors.teal,
+                    title: Text(
+                      'Accept Terms', 
+                      style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+                    ),
+                    value: _acceptTerms,
+                    onChanged: (bool value) {
+                      setState(() {
+                        _acceptTerms = value;
+                      });
+                    },
                   ),
-                  value: _acceptTerms,
-                  onChanged: (bool value) {
-                    setState(() {
-                      _acceptTerms = value;
-                    });
-                  },
-                ),
-                SizedBox(height: 8.0),
-                _loginSubmitButton(),
-              ],
+                  SizedBox(height: 8.0),
+                  _loginSubmitButton(),
+                ],
+              ),
             ),
-          ),
           ),
         ],
       ),
