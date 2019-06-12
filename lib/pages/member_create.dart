@@ -12,8 +12,12 @@ class MemberCreatePage extends StatefulWidget {
 }
 
 class _MemberCreatePageState extends State<MemberCreatePage> {
-  String _titleValue, _descriptionValue;
-  double _heightValue;
+  final Map<String, dynamic> _formData = {
+    'title': null,
+    'description': null,
+    'height': null,
+    'image': 'assets/yui.jpg'
+  };
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _titleInput() {
@@ -35,9 +39,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
         }
       },
       onSaved: (String value) {
-        setState(() {
-          _titleValue = value;
-        });
+        _formData['title'] = value;
       },
     );
   }
@@ -62,9 +64,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
         }
       },
       onSaved: (String value) {
-        setState(() {
-          _descriptionValue = value;
-        });
+        _formData['description'] = value;
       },
     );
   }
@@ -89,9 +89,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
         }
       },
       onSaved: (String value) {
-        setState(() {
-          _heightValue = double.parse(value.replaceFirst(RegExp(r','), '.'));
-        });
+        _formData['height'] = double.parse(value.replaceFirst(RegExp(r','), '.'));
       },
     );
   }
@@ -99,13 +97,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
   void _submitForm() {
     if (!_formKey.currentState.validate()) return;
     _formKey.currentState.save();
-    final Map<String, dynamic> member = {
-      'title': _titleValue,
-      'description': _descriptionValue,
-      'height': _heightValue,
-      'image': 'assets/yui.jpg'
-    };
-    widget.addMember(member);
+    widget.addMember(_formData);
     Navigator.pushReplacementNamed(context, '/members');
   }
 
