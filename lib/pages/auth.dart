@@ -8,10 +8,15 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  String _email, _password;
-  bool _acceptTerms = false;
+  final Map<String, dynamic> _authForm = {
+    'email': null,
+    'password': null,
+    'acceptTerms': false
+  };
 
-  Widget loginLogo() {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Widget authLogo() {
     return Column(
       children: <Widget>[
         Image.asset('assets/logo.png', scale: 7.0),
@@ -28,13 +33,12 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  Widget _loginTextField(field, label) {
-    return TextField(
-      obscureText: label == 'Password' ? true : false,
+  Widget _emailInput() {
+    return TextFormField(
       keyboardType: TextInputType.emailAddress,
       style: TextStyle(fontSize: 14.0),
       decoration: InputDecoration(
-        labelText: label,
+        labelText: 'Email',
         contentPadding: EdgeInsets.all(15.0),
         hasFloatingPlaceholder: false,
         fillColor: Colors.grey[300],
@@ -44,10 +48,40 @@ class _AuthPageState extends State<AuthPage> {
           borderRadius: new BorderRadius.circular(5.0),
         ),
       ),
-      onChanged: (String value) {
-        setState(() {
-          field = value;
-        });
+      validator: (String value) {
+        if (value.isEmpty || !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?").hasMatch(value)) {
+          return 'Please enter a valid email.';
+        }
+      },
+      onSaved: (String value) {
+        _authForm['email'] = value;
+      },
+    );
+  }
+
+  Widget _passwordInput() {
+    return TextFormField(
+      obscureText: true,
+      keyboardType: TextInputType.text,
+      style: TextStyle(fontSize: 14.0),
+      decoration: InputDecoration(
+        labelText: 'Password',
+        contentPadding: EdgeInsets.all(15.0),
+        hasFloatingPlaceholder: false,
+        fillColor: Colors.grey[300],
+        filled: true,
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: new BorderRadius.circular(5.0),
+        ),
+      ),
+      validator: (String value) {
+        if (value.isEmpty || value.length < 8) {
+          return 'Password invalid.';
+        }
+      },
+      onSaved: (String value) {
+        _authForm['password'] = value;
       },
     );
   }
@@ -68,6 +102,9 @@ class _AuthPageState extends State<AuthPage> {
           ],
         ),
         onPressed: () {
+          if (!_formKey.currentState.validate() || !_authForm['acceptTerms']) return;
+          _formKey.currentState.save();
+          print(_authForm);
           Navigator.pushReplacementNamed(context, '/members');
         },
       ),
@@ -91,29 +128,32 @@ class _AuthPageState extends State<AuthPage> {
             child: Container(
               width: targetWidth,
               padding: EdgeInsets.only(top: 80.0, right: 15.0, left: 15.0, bottom: 20.0),
-              child: Column(
-                children: <Widget>[
-                  loginLogo(),
-                  SizedBox(height: 40.0),
-                  _loginTextField(_email, 'Email'),
-                  SizedBox(height: 10.0),
-                  _loginTextField(_password, 'Password'),
-                  SwitchListTile(
-                    activeColor: Colors.teal,
-                    title: Text(
-                      'Accept Terms', 
-                      style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    authLogo(),
+                    SizedBox(height: 40.0),
+                    _emailInput(),
+                    SizedBox(height: 10.0),
+                    _passwordInput(),
+                    SwitchListTile(
+                      activeColor: Colors.teal,
+                      title: Text(
+                        'Accept Terms', 
+                        style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+                      ),
+                      value: _authForm['acceptTerms'],
+                      onChanged: (bool value) {
+                        setState(() {
+                          _authForm['acceptTerms'] = value;
+                        });
+                      },
                     ),
-                    value: _acceptTerms,
-                    onChanged: (bool value) {
-                      setState(() {
-                        _acceptTerms = value;
-                      });
-                    },
-                  ),
-                  SizedBox(height: 8.0),
-                  _loginSubmitButton(),
-                ],
+                    SizedBox(height: 8.0),
+                    _loginSubmitButton(),
+                  ],
+                ),
               ),
             ),
           ),
