@@ -31,6 +31,7 @@ class _MemberEditPageState extends State<MemberEditPage> {
 
   Widget _titleInput() {
     return TextFormField(
+      keyboardType: TextInputType.text,
       initialValue: widget.member == null ? '' : widget.member['title'],
       style: TextStyle(fontSize: 14.0),
       decoration: InputDecoration(
@@ -84,7 +85,7 @@ class _MemberEditPageState extends State<MemberEditPage> {
     return TextFormField(
       initialValue: widget.member == null ? '' : widget.member['height'].toString(),
       style: TextStyle(fontSize: 14.0),
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.numberWithOptions(decimal: true),
       decoration: InputDecoration(
         labelText: 'Height',
         hasFloatingPlaceholder: false,
@@ -121,39 +122,44 @@ class _MemberEditPageState extends State<MemberEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Widget pageContent = Container(
-      padding: EdgeInsets.only(right: 10.0, left: 10.0),
-      child: Form(
-        key: _formKey,
-        child: ListView(
-          padding: EdgeInsets.only(top: 15.0),
-          children: <Widget>[
-            _titleInput(),
-            SizedBox(height: 10.0),
-            _descriptionInput(),
-            SizedBox(height: 10.0),
-            _heightInput(),
-            SizedBox(height: 5.0),
-            RaisedButton.icon(
-              icon: Icon(Icons.save, size: 15.0),
-              color: Colors.teal,
-              textColor: Colors.white,
-              label: Text('Save'),
-              onPressed: _submitForm,
-            ),
-          ],
+    final Widget pageContent = GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Container(
+        padding: EdgeInsets.only(right: 10.0, left: 10.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            padding: EdgeInsets.only(top: 15.0),
+            children: <Widget>[
+              _titleInput(),
+              SizedBox(height: 10.0),
+              _descriptionInput(),
+              SizedBox(height: 10.0),
+              _heightInput(),
+              SizedBox(height: 5.0),
+              RaisedButton.icon(
+                icon: Icon(Icons.save, size: 15.0),
+                color: Colors.teal,
+                textColor: Colors.white,
+                label: Text('Save'),
+                onPressed: _submitForm,
+              ),
+            ],
+          ),
         ),
       ),
     );
 
     return widget.member == null
-      ? pageContent
-      : Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.lightBlue[900],
-            title: Text('Edit Member'),
-          ),
-          body: pageContent,
-        );
+        ? pageContent
+        : Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.lightBlue[900],
+              title: Text('Edit Member'),
+            ),
+            body: pageContent,
+          );
   }
 }
