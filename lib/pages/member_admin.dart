@@ -4,10 +4,10 @@ import './member_edit.dart';
 import './member_list.dart';
 
 class MemberAdmin extends StatelessWidget {
-  final Function addMember, deleteMember;
+  final Function addMember, updateMember, deleteMember;
   final List<Map<String, dynamic>> members;
 
-  MemberAdmin(this.addMember, this.deleteMember, this.members);
+  MemberAdmin(this.addMember, this.updateMember, this.deleteMember, this.members);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class MemberAdmin extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             MemberEditPage(addMember: addMember),
-            MemberListPage(members)
+            MemberListPage(members, updateMember)
           ],
         ),
       ),

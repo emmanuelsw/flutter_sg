@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class MemberEditPage extends StatefulWidget {
   final Function addMember, updateMember;
   final Map<String, dynamic> member;
+  final int memberIndex;
 
-  MemberEditPage({this.addMember, this.updateMember, this.member});
+  MemberEditPage({this.addMember, this.updateMember, this.member, this.memberIndex});
 
   @override
   State<StatefulWidget> createState() {
@@ -17,8 +18,15 @@ class _MemberEditPageState extends State<MemberEditPage> {
     'title': null,
     'description': null,
     'height': null,
-    'image': 'assets/yui.jpg'
+    'image': null
   };
+
+  @override
+  void initState() {
+    _formData['image'] = widget.member == null ? 'assets/yui.jpg' : widget.member['image'];
+    super.initState();
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _titleInput() {
@@ -103,7 +111,11 @@ class _MemberEditPageState extends State<MemberEditPage> {
   void _submitForm() {
     if (!_formKey.currentState.validate()) return;
     _formKey.currentState.save();
-    widget.addMember(_formData);
+    if (widget.member == null) {
+      widget.addMember(_formData);
+    } else {
+      widget.updateMember(widget.memberIndex, _formData);
+    }
     Navigator.pushReplacementNamed(context, '/members');
   }
 

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import './member_edit.dart';
 
 class MemberListPage extends StatelessWidget {
+  final Function updateMember;
   final List<Map<String, dynamic>> members;
 
-  MemberListPage(this.members);
+  MemberListPage(this.members, this.updateMember);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,11 @@ class MemberListPage extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (BuildContext context) {
-                  return MemberEditPage(member: members[index]);
+                  return MemberEditPage(
+                    member: members[index], 
+                    updateMember: updateMember, 
+                    memberIndex: index
+                  );
                 }),
               );
             },

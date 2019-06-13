@@ -36,6 +36,12 @@ class _MyApp extends State<MyApp> {
     });
   }
 
+  void _updateMember(int index, Map<String, dynamic> member) {
+    setState(() {
+      _members[index] = member;
+    });
+  }
+
   void _deleteMember(int index) {
     setState(() {
       _members.removeAt(index);
@@ -49,7 +55,7 @@ class _MyApp extends State<MyApp> {
       routes: {
         '/': (BuildContext context) => AuthPage(),
         '/members': (BuildContext context) => HomePage(_members),
-        '/admin': (BuildContext context) => MemberAdmin(_addMember, _deleteMember, _members),
+        '/admin': (BuildContext context) => MemberAdmin(_addMember, _updateMember, _deleteMember, _members),
       },
       onGenerateRoute: (RouteSettings settings) {
         final List<String> pathElements = settings.name.split('/');
