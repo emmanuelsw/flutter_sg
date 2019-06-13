@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import './member_create.dart';
+import './member_edit.dart';
 import './member_list.dart';
 
 class MemberAdmin extends StatelessWidget {
   final Function addMember, deleteMember;
+  final List<Map<String, dynamic>> members;
 
-  MemberAdmin(this.addMember, this.deleteMember);
+  MemberAdmin(this.addMember, this.deleteMember, this.members);
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,8 @@ class MemberAdmin extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            MemberCreatePage(addMember),
-            MemberListPage()
+            MemberEditPage(addMember: addMember),
+            MemberListPage(members)
           ],
         ),
       ),

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-class MemberCreatePage extends StatefulWidget {
-  final Function addMember;
+class MemberEditPage extends StatefulWidget {
+  final Function addMember, updateMember;
+  final Map<String, dynamic> member;
 
-  MemberCreatePage(this.addMember);
+  MemberEditPage({this.addMember, this.updateMember, this.member});
 
   @override
   State<StatefulWidget> createState() {
-    return _MemberCreatePageState();
+    return _MemberEditPageState();
   }
 }
 
-class _MemberCreatePageState extends State<MemberCreatePage> {
+class _MemberEditPageState extends State<MemberEditPage> {
   final Map<String, dynamic> _formData = {
     'title': null,
     'description': null,
@@ -22,6 +23,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
 
   Widget _titleInput() {
     return TextFormField(
+      initialValue: widget.member == null ? '' : widget.member['title'],
       style: TextStyle(fontSize: 14.0),
       decoration: InputDecoration(
         labelText: 'Name',
@@ -47,6 +49,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
   Widget _descriptionInput() {
     return TextFormField(
       maxLines: 3,
+      initialValue: widget.member == null ? '' : widget.member['description'],
       style: TextStyle(fontSize: 14.0),
       decoration: InputDecoration(
         labelText: 'Description',
@@ -71,6 +74,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
 
   Widget _heightInput() {
     return TextFormField(
+      initialValue: widget.member == null ? '' : widget.member['height'].toString(),
       style: TextStyle(fontSize: 14.0),
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
@@ -84,12 +88,14 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
         ),
       ),
       validator: (String value) {
-        if (value.isEmpty || !RegExp(r'^(?:[1-9]\d*|0)?(?:\.\d+)?$').hasMatch(value)) {
+        if (value.isEmpty ||
+            !RegExp(r'^(?:[1-9]\d*|0)?(?:\.\d+)?$').hasMatch(value)) {
           return 'Height is required and should bea number.';
         }
       },
       onSaved: (String value) {
-        _formData['height'] = double.parse(value.replaceFirst(RegExp(r','), '.'));
+        _formData['height'] =
+            double.parse(value.replaceFirst(RegExp(r','), '.'));
       },
     );
   }
@@ -103,7 +109,7 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final Widget pageContent = Container(
       padding: EdgeInsets.only(right: 10.0, left: 10.0),
       child: Form(
         key: _formKey,
@@ -127,5 +133,15 @@ class _MemberCreatePageState extends State<MemberCreatePage> {
         ),
       ),
     );
+
+    return widget.member == null
+      ? pageContent
+      : Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.lightBlue[900],
+            title: Text('Edit Member'),
+          ),
+          body: pageContent,
+        );
   }
 }

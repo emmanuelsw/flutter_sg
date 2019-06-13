@@ -1,10 +1,40 @@
 import 'package:flutter/material.dart';
+import './member_edit.dart';
 
 class MemberListPage extends StatelessWidget {
+  final List<Map<String, dynamic>> members;
+
+  MemberListPage(this.members);
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('All Members'),
+    return ListView.builder(
+      padding: EdgeInsets.only(top: 5.0),
+      itemBuilder: (BuildContext context, int index) {
+        return ListTile(
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),
+          leading: CircleAvatar(
+            backgroundImage: AssetImage(members[index]['image']),
+          ),
+          title: Text(members[index]['title']),
+          subtitle: Text(
+            'Sakura Gakuin',
+            style: TextStyle(fontSize: 12.5, fontStyle: FontStyle.italic),
+          ),
+          trailing: IconButton(
+            color: Colors.pink[800],
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) {
+                  return MemberEditPage(member: members[index]);
+                }),
+              );
+            },
+          ),
+        );
+      },
+      itemCount: members.length,
     );
   }
 }
