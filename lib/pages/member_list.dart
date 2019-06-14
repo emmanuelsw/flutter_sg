@@ -2,17 +2,39 @@ import 'package:flutter/material.dart';
 import './member_edit.dart';
 
 class MemberListPage extends StatelessWidget {
-  final Function updateMember;
+  final Function updateMember, deleteMember;
   final List<Map<String, dynamic>> members;
 
-  MemberListPage(this.members, this.updateMember);
+  MemberListPage(this.members, this.updateMember, this.deleteMember);
+
+  Widget _editButton(BuildContext context, int index) {
+    return IconButton(
+      color: Colors.pink[800],
+      icon: Icon(Icons.edit),
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) {
+            return MemberEditPage(
+              member: members[index], 
+              updateMember: updateMember, 
+              memberIndex: index
+            );
+          }),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.only(top: 5.0),
       itemBuilder: (BuildContext context, int index) {
         return Dismissible(
+          onDismissed: (DismissDirection direction) {
+            if (direction == DismissDirection.endToStart) {
+              deleteMember(index);
+            }
+          },
           key: Key(index.toString()),
           background: Container(color: Colors.red),
           child: ListTile(
@@ -25,21 +47,7 @@ class MemberListPage extends StatelessWidget {
               'Sakura Gakuin',
               style: TextStyle(fontSize: 12.5, fontStyle: FontStyle.italic),
             ),
-            trailing: IconButton(
-              color: Colors.pink[800],
-              icon: Icon(Icons.edit),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return MemberEditPage(
-                      member: members[index], 
-                      updateMember: updateMember, 
-                      memberIndex: index
-                    );
-                  }),
-                );
-              },
-            ),
+            trailing: _editButton(context, index),
           ),
         );
       },

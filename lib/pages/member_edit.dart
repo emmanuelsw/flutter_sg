@@ -109,20 +109,8 @@ class _MemberEditPageState extends State<MemberEditPage> {
     );
   }
 
-  void _submitForm() {
-    if (!_formKey.currentState.validate()) return;
-    _formKey.currentState.save();
-    if (widget.member == null) {
-      widget.addMember(_formData);
-    } else {
-      widget.updateMember(widget.memberIndex, _formData);
-    }
-    Navigator.pushReplacementNamed(context, '/members');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final Widget pageContent = GestureDetector(
+  Widget _pageContent() {
+    return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
       },
@@ -151,15 +139,29 @@ class _MemberEditPageState extends State<MemberEditPage> {
         ),
       ),
     );
+  }
 
+  void _submitForm() {
+    if (!_formKey.currentState.validate()) return;
+    _formKey.currentState.save();
+    if (widget.member == null) {
+      widget.addMember(_formData);
+    } else {
+      widget.updateMember(widget.memberIndex, _formData);
+    }
+    Navigator.pushReplacementNamed(context, '/members');
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return widget.member == null
-        ? pageContent
-        : Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.lightBlue[900],
-              title: Text('Edit Member'),
-            ),
-            body: pageContent,
-          );
+      ? _pageContent()
+      : Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.lightBlue[900],
+            title: Text('Edit Member'),
+          ),
+          body: _pageContent(),
+        );
   }
 }

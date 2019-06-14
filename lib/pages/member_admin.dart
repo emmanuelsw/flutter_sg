@@ -43,7 +43,7 @@ class MemberAdmin extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             MemberEditPage(addMember: addMember),
-            MemberListPage(members, updateMember)
+            MemberListPage(members, updateMember, deleteMember)
           ],
         ),
       ),
