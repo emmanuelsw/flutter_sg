@@ -11,7 +11,7 @@ class _AuthPageState extends State<AuthPage> {
   final Map<String, dynamic> _authForm = {
     'email': null,
     'password': null,
-    'acceptTerms': false
+    'acceptTerms': true
   };
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -35,6 +35,7 @@ class _AuthPageState extends State<AuthPage> {
 
   Widget _emailInput() {
     return TextFormField(
+      initialValue: 'test@test.co',
       keyboardType: TextInputType.emailAddress,
       style: TextStyle(fontSize: 14.0),
       decoration: InputDecoration(
@@ -61,6 +62,7 @@ class _AuthPageState extends State<AuthPage> {
 
   Widget _passwordInput() {
     return TextFormField(
+      initialValue: 'password123',
       obscureText: true,
       keyboardType: TextInputType.text,
       style: TextStyle(fontSize: 14.0),

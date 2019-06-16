@@ -28,6 +28,7 @@ class MemberListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      itemCount: members.length,
       itemBuilder: (BuildContext context, int index) {
         return Dismissible(
           onDismissed: (DismissDirection direction) {
@@ -51,7 +52,6 @@ class MemberListPage extends StatelessWidget {
           ),
         );
       },
-      itemCount: members.length,
     );
   }
 }

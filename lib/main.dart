@@ -11,9 +11,7 @@ void main() {
 
 class MyApp extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _MyApp();
-  }
+  _MyApp createState() => _MyApp();
 }
 
 class _MyApp extends State<MyApp> {
